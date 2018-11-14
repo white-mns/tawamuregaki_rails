@@ -28,21 +28,11 @@ module ApplicationHelper
         end
     end
 
-    def character_link(e_no)
-        if e_no <= 0 then return end
-
-        file_name = sprintf("%d",e_no)
-        link_to " 最終結果", "https://xxx.xxx/"+file_name+".html", :target => "_blank"
-    end
-    
-    def character_old_link(last_result_no, e_no, result_no, generate_no)
-        if e_no <= 0 then return end
-        if result_no == last_result_no then return end
-
-        result_no_text = sprintf("%03d", result_no)
+    def battle_link(result_no, generate_no, battle_no)
+        result_no_text = sprintf("%d", result_no)
         generate_text  = generate_no > 0 ? "_" + sprintf("%d", generate_no) : ""
-        file_name = sprintf("%d", e_no)
-        link_to " 結果", "https://xxx.xxx/"+result_no_text+generate_text+"/"+file_name+".html", :target => "_blank"
+        file_name = sprintf("%d", battle_no)
+        link_to " 結果", "https://archives.teiki.org/risu/tawa/1/p/"+result_no_text+generate_text+"/"+file_name+".html", :target => "_blank"
     end
 
     def search_submit_button()

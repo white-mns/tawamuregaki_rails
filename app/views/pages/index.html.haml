@@ -1,0 +1,93 @@
+- @page_title = "結果一覧"
+%h1= @page_title
+
+.card.desc
+  .card-header
+    - act_icon(true)
+    検索仕様
+    - act_desc(true)
+  .card-body
+    = render "layouts/base_desc"
+    %p
+      %span.example_select.example_toggle.pointer
+        - help_icon
+        入力例
+        - act_desc(false)
+    #example.closed
+      = render "layouts/input_desc"
+= search_form_for @search do |f|
+  %table.search_toggle.table.table-striped.table-bordered.table-hover
+    %tbody.pointer
+      %tr
+        %td{colspan: "5"}
+          - act_icon(true)
+          絞り込み検索
+          - act_desc(true)
+    %tbody
+      %tr
+      %tr
+        %td.indent
+        %td= f.label :e_no_form, 'Eno'
+        %td.formNum= text_field_tag :e_no_form, @e_no_form
+        %td= f.label :pc_name_form, 'キャラクター名'
+        %td.formText= text_field_tag :pc_name_form, @pc_name_form
+      %tr
+        %td.indent
+        %td= f.label :story_id_form, '物語'
+        %td.formNum= text_field_tag :story_id_form, @story_id_form
+        %td= f.label :page_no_form, '頁'
+        %td.formNum= text_field_tag :page_no_form, @page_no_form
+      %tr
+        %td.indent
+        %td= f.label :battle_no_form, '結果No'
+        %td.formNum{colspan: "3"}= text_field_tag :battle_no_form, @battle_no_form
+      %tr
+        %td.indent
+        %td= f.label :party_num_form, 'パーティ人数'
+        %td.formNum{colspan: "3"}= text_field_tag :party_num_form, @party_num_form
+      %tr
+        %td.indent
+        %td= f.label :enemy_num_form, '敵人数'
+        %td.formNum{colspan: "3"}= text_field_tag :enemy_num_form, @enemy_num_form
+      %tr
+        %td.indent
+        %td= f.label :battle_result_form, '勝敗'
+        %td.formNum{colspan: "3"}= text_field_tag :battle_result_form, @battle_result_form
+      %tr
+        %td.indent
+        %td.indent= hidden_field_tag :is_form, 1
+        %td{colspan: "3"}
+          - search_submit_button
+
+
+= paginate(@pages)
+%br
+ヒット数：#{ @count }件
+%br
+%br
+
+%table.table.table-striped.table-bordered.table-hover
+  %thead
+    %tr
+      %th= sort_link(@search, :battle_no, '結果No', default_order: :desc)
+      %th= sort_link(@search, :story_id, '物語', default_order: :desc)
+      %th= sort_link(@search, :page_no, '頁', default_order: :desc)
+      %th= sort_link(@search, :e_no,'パーティ(Eno)', default_order: :desc)
+      %th= sort_link(@search, :party_num, 'パーティ人数', default_order: :desc)
+      %th= sort_link(@search, :enemy_num, '敵人数', default_order: :desc)
+      %th= sort_link(@search, :battle_result, '勝敗', default_order: :desc)
+      %th{colspan: "2"} 結果リンク
+  %tbody
+    - @pages.each do |page|
+      %tr
+        %td= page.battle_no
+        %td
+          = "[" + sprintf("%d", page.story_id) + "]"
+          = page.story.title if page.story
+        %td= page.page_no
+        %td 
+        %td= page.party_num
+        %td= page.enemy_num
+        %td= page.battle_result
+        %td= battle_link(page.result_no, page.generate_no, page.battle_no)
+= paginate(@pages)
