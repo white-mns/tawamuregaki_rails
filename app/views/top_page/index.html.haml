@@ -10,13 +10,10 @@
   .card-body
     %h2 サイトマップ
     .row
-      .col-md-6
+      .col-md-12
         %ul
-          %li 個人データ
-          %ul  
-      .col-md-6
-        %ul
-          %li 結果データ
+          %li= link_to "キャラクター愛称一覧", names_path
+          %li= link_to "結果一覧", pages_path
 
 .card.top
   .card-body

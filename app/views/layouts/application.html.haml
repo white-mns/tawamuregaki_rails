@@ -20,18 +20,10 @@
           %span.navbar-toggler-icon
         .collapse.navbar-collapse#navbarResponsive
           %ul.navbar-nav
-            %li.nav-item.dropdown
-              %a.nav-link.dropdown-toggle#themes{ :data => {:toggle =>"dropdown"}, :href => "#"}
-                個人データ
-                %span.caret
-              .dropdown-menu
-                .dropdown-divider
-            %li.nav-item.dropdown
-              %a.nav-link.dropdown-toggle#themes{ :data => {:toggle =>"dropdown"}, :href => "#"}
-                結果データ
-                %span.caret
-              .dropdown-menu
-                .dropdown-divider
+            %li.nav-item
+              = link_to "キャラクター愛称一覧", names_path, class: "nav-link"
+            %li.nav-item
+              = link_to "結果一覧", pages_path, class: "nav-link"
 
     .container
       .row

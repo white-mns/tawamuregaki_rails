@@ -7,6 +7,10 @@
     検索仕様
     - act_desc(true)
   .card-body
+    %p
+      味方一覧、敵一覧の取得は1ターン目の敵味方一覧から取得しています。そのため、戦闘開始時に倒れた場合は取得することができません。
+      %br
+      また、呼び出したキャラクターが戦闘開始時に倒れた場合、二人目以降のキャラクターが呼び出しキャラとして誤認されます。
     = render "layouts/base_desc"
     %p
       %span.example_select.example_toggle.pointer
