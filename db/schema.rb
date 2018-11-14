@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_131123) do
+ActiveRecord::Schema.define(version: 2018_11_14_132357) do
+
+  create_table "enemies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "result_no"
+    t.integer "generate_no"
+    t.integer "battle_no"
+    t.integer "enemy_id"
+    t.integer "suffix_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["battle_no", "result_no", "generate_no"], name: "battle_no_eno"
+    t.index ["enemy_id"], name: "index_enemies_on_enemy_id"
+    t.index ["suffix_id"], name: "index_enemies_on_suffix_id"
+  end
 
   create_table "names", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "result_no"
