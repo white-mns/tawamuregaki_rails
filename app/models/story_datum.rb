@@ -1,0 +1,2 @@
+class StoryDatum < ApplicationRecord
+end

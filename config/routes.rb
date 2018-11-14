@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :pages
+  resources :story_data
   resources :proper_names
   resources :names
   get 'top_page/privacy'
