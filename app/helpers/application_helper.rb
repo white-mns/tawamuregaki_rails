@@ -22,7 +22,7 @@ module ApplicationHelper
     def pc_name_text(e_no, pc_name)
         e_no_text = "(" + sprintf("%d",e_no) + ")"
         if pc_name then
-            pc_name.name.html_safe + e_no_text
+            pc_name.nickname.html_safe + e_no_text
         else
             e_no_text
         end
