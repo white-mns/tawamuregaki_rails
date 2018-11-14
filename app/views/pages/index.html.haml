@@ -29,13 +29,6 @@
           - act_desc(true)
     %tbody
       %tr
-      %tr
-        %td.indent
-        %td= f.label :e_no_form, 'Eno'
-        %td.formNum= text_field_tag :e_no_form, @e_no_form
-        %td= f.label :pc_name_form, 'キャラクター名'
-        %td.formText= text_field_tag :pc_name_form, @pc_name_form
-      %tr
         %td.indent
         %td= f.label :story_id_form, '物語'
         %td.formNum= text_field_tag :story_id_form, @story_id_form
@@ -43,20 +36,71 @@
         %td.formNum= text_field_tag :page_no_form, @page_no_form
       %tr
         %td.indent
+        %td= f.label :e_no_form, 'Eno'
+        %td.formNum= text_field_tag :e_no_form, @e_no_form
+        %td= f.label :pc_name_form, 'キャラクター名'
+        %td.formText= text_field_tag :pc_name_form, @pc_name_form
+    %tbody.tbody_toggle.pointer
+      %tr
+        %td{colspan: "5"}
+          = hidden_field_tag :show_battle_no, @show_battle_no
+          - act_icon(false)
+          = label_tag :show_battle_no, '　結果Noで絞り込む', class: "act_desc"
+          = label_tag :show_battle_no, '　結果No検索を非表示にする', class: "act_desc closed"
+    %tbody.closed
+      %tr
+        %td.indent
         %td= f.label :battle_no_form, '結果No'
         %td.formNum{colspan: "3"}= text_field_tag :battle_no_form, @battle_no_form
+    %tbody.tbody_toggle.pointer
       %tr
-        %td.indent
-        %td= f.label :party_num_form, 'パーティ人数'
-        %td.formNum{colspan: "3"}= text_field_tag :party_num_form, @party_num_form
-      %tr
-        %td.indent
-        %td= f.label :enemy_num_form, '敵人数'
-        %td.formNum{colspan: "3"}= text_field_tag :enemy_num_form, @enemy_num_form
+        %td{colspan: "5"}
+          = hidden_field_tag :show_battle_result, @show_battle_result
+          - act_icon(false)
+          = label_tag :show_battle_result, '　勝敗を表示する', class: "act_desc"
+          = label_tag :show_battle_result, '　勝敗を非表示にする', class: "act_desc closed"
+    %tbody.closed
       %tr
         %td.indent
         %td= f.label :battle_result_form, '勝敗'
-        %td.formNum{colspan: "3"}= text_field_tag :battle_result_form, @battle_result_form
+        %td{colspan: "3"}
+          = check_box_tag :is_win, @is_win, @is_win
+          = label_tag :is_win, '勝利'
+          　
+          = check_box_tag :is_draw, @is_draw, @is_draw
+          = label_tag :is_draw, '引分'
+          　
+          = check_box_tag :is_lose, @is_lose, @is_lose
+          = label_tag :is_lose, '敗北'
+          　
+    %tbody.tbody_toggle.pointer
+      %tr
+        %td{colspan: "5"}
+          = hidden_field_tag :show_enemy, @show_enemy
+          - act_icon(false)
+          = label_tag :show_enemy, '　敵名を表示する', class: "act_desc"
+          = label_tag :show_enemy, '　敵名を非表示にする', class: "act_desc closed"
+    %tbody.closed
+      %tr
+        %td.indent
+        %td= f.label :enemy_form, '敵名'
+        %td.formText{colspan: "3"}= text_field_tag :enemy_form, @enemy_form
+    %tbody.tbody_toggle.pointer
+      %tr
+        %td{colspan: "5"}
+          = hidden_field_tag :show_num, @show_num
+          - act_icon(false)
+          = label_tag :show_num, '　人数を表示する', class: "act_desc"
+          = label_tag :show_num, '　人数を非表示にする', class: "act_desc closed"
+          %div.act_desc 　パーティ人数、敵人数
+    %tbody.closed
+      %tr
+        %td.indent
+        %td= f.label :party_num_form, 'パーティ人数'
+        %td.formNum= text_field_tag :party_num_form, @party_num_form
+        %td= f.label :enemy_num_form, '敵人数'
+        %td.formNum= text_field_tag :enemy_num_form, @enemy_num_form
+    %tbody
       %tr
         %td.indent
         %td.indent= hidden_field_tag :is_form, 1
@@ -74,24 +118,40 @@
   %thead
     %tr
       %th= sort_link(@search, :battle_no, '結果No', default_order: :desc)
-      %th= sort_link(@search, :story_id, '物語', default_order: :desc)
+      %th.sep= sort_link(@search, :story_id, '物語', default_order: :desc)
       %th= sort_link(@search, :page_no, '頁', default_order: :desc)
-      %th= sort_link(@search, :e_no,'パーティ(Eno)', default_order: :desc)
-      %th= sort_link(@search, :party_num, 'パーティ人数', default_order: :desc)
-      %th= sort_link(@search, :enemy_num, '敵人数', default_order: :desc)
-      %th= sort_link(@search, :battle_result, '勝敗', default_order: :desc)
-      %th{colspan: "2"} 結果リンク
+      - if @show_battle_result == "1"
+        %th.sep= sort_link(@search, :battle_result, '勝敗', default_order: :desc)
+      %th.sep= sort_link(@search, :party_members_e_no,'パーティ(Eno)', default_order: :desc)
+      - if @show_num == "1"
+        %th= sort_link(@search, :party_num, '人数', default_order: :desc)
+      - if @show_enemy == "1"
+        %th.sep= sort_link(@search, :enemy_members_enemy_id,'敵一覧', default_order: :desc)
+      - if @show_num == "1"
+        %th= sort_link(@search, :enemy_num, '敵数', default_order: :desc)
+      %th.sep{colspan: "2"} 結果リンク
   %tbody
     - @pages.each do |page|
       %tr
         %td= page.battle_no
-        %td
+        %td.sep
           = "[" + sprintf("%d", page.story_id) + "]"
           = page.story.title if page.story
         %td= page.page_no
-        %td 
-        %td= page.party_num
-        %td= page.enemy_num
-        %td= page.battle_result
-        %td= battle_link(page.result_no, page.generate_no, page.battle_no)
+        - if @show_battle_result == "1"
+          %td.sep
+            = "勝利" if page.battle_result == 1
+            = "引分" if page.battle_result == 0
+            = "敗北" if page.battle_result == -1
+            = "" if page.battle_result == -99
+        %td.sep
+          - party_members(page.party_members) if page.party_members
+        - if @show_num == "1"
+          %td= page.party_num
+        - if @show_enemy == "1"
+          %td.sep
+            - enemy_members(page.enemy_members) if page.enemy_members
+        - if @show_num == "1"
+          %td= page.enemy_num
+        %td.sep= battle_link(page.result_no, page.generate_no, page.battle_no)
 = paginate(@pages)
