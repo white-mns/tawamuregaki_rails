@@ -21,22 +21,30 @@ $gray-darker:                       #222 ;
 $gray-dark:                         #282828 ;
 $gray-light:                        #888 ;
 
+$body-bg:                           #371206;
+$body-color:                        #FFEEDD;
 $link-color:                        #6df;
 $nav-hover-bg-color:                #555;
 $nav-active-bg-color:               #222;
-$navbar-light-color:                $white;
-$navbar-light-hover-color:          #4cf;
-$navbar-light-active-color:         $white;
+$navbar-light-color:                #CCCC66;
+$navbar-light-hover-color:          #CCCC66;
+$navbar-light-active-color:         #CCCC66;
 $navbar-light-toggler-border-color: transparent;
 $dropdown-link-hover-bg:            $link-color;
 $dropdown-link-active-bg:           $link-color;
 $table-border-color:                #888 ;
-$table-hover-bg:                    $gray;
-$nav-border-color:                  MediumSeaGreen;
+$table-accent-bg:                   #F0E68C;
+$table-hover-bg:                    #f0e6be;
+$table-bg:                          #EEE8AA;
+$table-color:                       #330000;
+$th-bg:                             #333300;
+$th-color:                          #CCCC66;
+$nav-border-color:                  #8e3a16;
+$card-bg:                           $table-bg;
 
 // Cyborgテーマからページネーションのカラーリングをコピー
-$pagination-color:                  #fff;
-$pagination-bg:                     $gray-darker;
+$pagination-color:                  $th-color;
+$pagination-bg:                     $th-bg;
 $pagination-border-color:           #888;
 $pagination-border-width:           0.05rem;
 
@@ -48,8 +56,8 @@ $pagination-active-color:           #fff;
 $pagination-active-bg:              #2A9FD6;
 $pagination-active-border-color:    transparent;
 
-$pagination-disabled-color:         $gray-light;
-$pagination-disabled-bg:            $gray-darker;
+$pagination-disabled-color:         $th-color;
+$pagination-disabled-bg:            $th-bg;
 $pagination-disabled-border-color:  #888;
 
 @import "bootswatch/darkly/variables";
@@ -61,9 +69,11 @@ body { padding-top: 5rem; }
 @import "bootswatch/darkly/bootswatch";
 
 .navbar-custom {
+    background-color: $th-bg;
     border-color: $nav-border-color;
     border-style: none none solid none;
     border-width: 0.3rem;
+    color: $th-color;
 }
 
 .navbar-custom .navbar-brand,{
@@ -114,7 +124,12 @@ h2 {
     border-style: solid;
     border-width: 0.05rem;
     box-shadow: .3rem .3rem .3rem rgba(0,0,0,0.2);
+    color: $table-color;
     margin-bottom: 1rem;
+
+    a {
+        color: #228800;
+    }
 }
 
 .card.desc {
@@ -122,11 +137,14 @@ h2 {
     border-style: solid;
     border-width: 0.05em;
     box-shadow: .3rem .3rem .3rem rgba(0,0,0,0.2);
+    color: $table-color;
     margin-bottom: 1rem;
-}
 
-.card.desc .card-header {
-    margin-left: 1px;
+    .card-header {
+        background-color: $th-bg;
+        color: $th-color;
+        margin-left: 1px;
+    }
 }
 
 .formText {
@@ -146,9 +164,9 @@ p.formNum {
 }
 
 .example_select{
-    background-color: #ddd;
+    background-color: $th-bg;
     border-left: 0.5em solid #282;
-    color: #222;
+    color: $th-color;
     padding: 0.5em 0.8em;
 }
 
@@ -160,6 +178,20 @@ p.formNum {
     display:none;
 }
 
+table {
+    color: $table-color;
+    a {
+        color: #448800;
+        font-weight: bold;
+    }
+}
+th {
+    background-color: $th-bg;
+    color: $th-color;
+    a {
+        color: $th-color;
+    }
+}
 td.sign{
     font-size: x-large;
 }
@@ -177,7 +209,8 @@ table tbody:nth-child(1) span.act_desc{
 }
 
 table tbody:nth-child(1) td{
-    background-color: #666;
+    background-color: $th-bg;
+    color: $th-color;
 }
 
 table tbody:nth-child(1) td:hover{
@@ -185,7 +218,8 @@ table tbody:nth-child(1) td:hover{
 }
 
 table tbody.tbody_toggle td{
-    background-color: #666;
+    background-color: $th-bg;
+    color: $th-color;
     padding-left: 2em;
 }
 
@@ -201,7 +235,7 @@ $submit-color: $gray;
 
 button.submit {
     background-color: $submit-color;
-    border: 0.2rem solid #fff;
+    border: 0.2rem solid transparent;
     box-shadow: 0 0.1rem 0.5rem rgba(0,0,0,0.2);
     color: #fff;
     font-weight: bold;
