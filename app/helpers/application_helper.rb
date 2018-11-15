@@ -32,7 +32,7 @@ module ApplicationHelper
         result_no_text = sprintf("%d", result_no)
         generate_text  = generate_no > 0 ? "_" + sprintf("%d", generate_no) : ""
         file_name = sprintf("%d", battle_no)
-        link_to " 結果", "https://archives.teiki.org/risu/tawa/1/p/"+result_no_text+generate_text+"/"+file_name+".html", :target => "_blank"
+        link_to " 結果", "https://archives.teiki.org/risu/tawa/2/p/"+result_no_text+generate_text+"/"+file_name+".html", :target => "_blank"
     end
 
     def search_submit_button()

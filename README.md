@@ -1,11 +1,11 @@
-# 戯書1期データ小屋　表示用Railsアプリ
-戯書1期データ小屋は[戯書](http://lisge.com/)（サイト消滅によりリンク先は製作者様サイト）を解析して得られるデータを扱った情報サイトです。  
-このプログラムは戯書1期データ小屋で実際に使用している表示用のRailsアプリです。  
-データ小屋の解析部分については[別リポジトリ](https://github.com/white-mns/teiki_arcive_parse/tree/tawa_1)を参照ください。
+# 戯書2期データ小屋　表示用Railsアプリ
+戯書2期データ小屋は[戯書](http://lisge.com/)（サイト消滅によりリンク先は製作者様サイト）を解析して得られるデータを扱った情報サイトです。  
+このプログラムは戯書2期データ小屋で実際に使用している表示用のRailsアプリです。  
+データ小屋の解析部分については[別リポジトリ](https://github.com/white-mns/teiki_arcive_parse/tree/tawa_2)を参照ください。
 
 # サイト
 実際に動いているサイトです。 
-[戯書1期データ小屋](https://data.teiki.org/tawa_1)
+[戯書2期データ小屋](https://data.teiki.org/tawa_2)
 
 # 動作環境
 以下の環境での動作を確認しています  
@@ -78,7 +78,7 @@ scaffoldで必要なものは大体用意されます。
 
 	belongs_to :p_name, :foreign_key => [:e_no, :result_no, :generate_no], :primary_key => [:e_no, :result_no, :generate_no], :class_name => 'Name'
 
-あとは[解析プログラム](https://github.com/white-mns/teiki_arcive_parse/tree/tawa_1)側に圧縮ファイルを用意し、解析とアップロード機能を追加してデータを入れれば新しい解析項目が公開されます。
+あとは[解析プログラム](https://github.com/white-mns/teiki_arcive_parse/tree/tawa_2)側に圧縮ファイルを用意し、解析とアップロード機能を追加してデータを入れれば新しい解析項目が公開されます。
 
 ## ライセンス
 本ソフトウェアはMIT Licenceを採用しています。 ライセンスの詳細については`LICENSE`ファイルを参照してください。
