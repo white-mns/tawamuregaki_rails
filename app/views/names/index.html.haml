@@ -50,10 +50,11 @@
   %thead
     %tr
       %th= sort_link(@search, :e_no,'キャラクター(ENo)', default_order: :desc)
-      %th
+      %th{colspan: "2"}
   %tbody
     - @names.each do |name|
       %tr
         %td= pc_name_text(name.e_no, name)
-        %td= link_to "戦闘結果", "#"
+        %td= link_to "参戦結果", pages_path + "?party_members_e_no_form=" + sprintf("%d", name.e_no) 
+        %td= link_to "進行結果", pages_path + "?show_leader_fellow=1&leader_e_no_form=" + sprintf("%d", name.e_no) 
 = paginate(@names)
