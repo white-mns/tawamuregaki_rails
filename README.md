@@ -20,7 +20,7 @@ gcc:5.2.1
 ・Railsの使い方を調べてなんやかんやして自分のRailsアプリが動くようにします。  
 ・このソースコードをダウンロードします。  
 
-    git clone git://github.com/white-mns/zero_rails.git
+    git clone git://github.com/white-mns/teiki_archive_rails.git
 
 ・動かします。  
 
