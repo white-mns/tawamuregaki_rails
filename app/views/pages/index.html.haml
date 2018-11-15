@@ -10,8 +10,10 @@
     %p
       味方一覧、敵一覧の取得は1ターン目の敵味方一覧から取得しています。そのため、戦闘開始時に倒れた場合は取得することができません。
       %br
-      また、呼び出したキャラクターが戦闘開始時に倒れた場合、二人目以降のキャラクターが呼び出しキャラとして誤認されます。
+      また、進行キャラクターが戦闘開始時に倒れた場合、二人目以降のキャラクターが進行キャラクターとして誤認されます。
     = render "layouts/base_desc"
+    %p
+      ※参戦Eno、参戦キャラクター名、呼び出しEno、呼び出しキャラクター名、同行ENo、同行キャラクター名は、一つの検索枠だけではOR検索しかできません。別々の検索枠に入力した場合はAND検索となり、キャラ同士の組み合わせで検索できます。具体的には入力例を御覧ください。
     %p
       %span.example_select.example_toggle.pointer
         - help_icon
@@ -19,6 +21,16 @@
         - act_desc(false)
     #example.closed
       = render "layouts/input_desc"
+      %p
+        Eno、キャラクター名での検索について、
+        %br
+        参戦キャラクター名に「カルロス ベルナ」……何もヒットしません
+        %br
+        参戦キャラクター名に「カルロス/ベルナ」……カルロスかベルナが参戦している結果がヒットします
+        %br
+        進行キャラクター名に「カルロス」、同行キャタクター名に「ベルナ」……カルロスがベルナを呼び出している結果がヒットします
+        %br
+        進行キャラクター名に「カルロス」、同行キャタクター名に「ベルナ」、参戦Enoに「1」……カルロスが、ベルナとEno.1のキャラクターを呼び出している結果がヒットします
 = search_form_for @search do |f|
   %table.search_toggle.table.table-striped.table-bordered.table-hover
     %tbody.pointer
@@ -30,16 +42,37 @@
     %tbody
       %tr
         %td.indent
-        %td= f.label :story_id_form, '物語'
-        %td.formNum= text_field_tag :story_id_form, @story_id_form
+        %td= f.label :story_form, '物語'
+        %td.formText= text_field_tag :story_form, @story_form
         %td= f.label :page_no_form, '頁'
         %td.formNum= text_field_tag :page_no_form, @page_no_form
       %tr
         %td.indent
-        %td= f.label :e_no_form, '参戦Eno'
-        %td.formNum= text_field_tag :e_no_form, @e_no_form
-        %td= f.label :pc_name_form, '参戦キャラクター名'
-        %td.formText= text_field_tag :pc_name_form, @pc_name_form
+        %td= f.label :party_members_e_no_form, '参戦ENo'
+        %td.formNum= text_field_tag :party_members_e_no_form, @party_members_e_no_form
+        %td= f.label :party_members_name_form, '参戦キャラクター名'
+        %td.formText= text_field_tag :party_members_name_form, @party_members_name_form
+    %tbody.tbody_toggle.pointer
+      %tr
+        %td{colspan: "5"}
+          = hidden_field_tag :show_battle_no, @show_battle_no
+          - act_icon(false)
+          = label_tag :show_battle_no, '　進行(呼び出し元)、同行で絞り込む', class: "act_desc"
+          = label_tag :show_battle_no, '　進行(呼び出し元)、同行を非表示にする', class: "act_desc closed"
+          %div.act_desc 　進行ENo、進行キャラクター名、同行ENo、同行キャラクター名
+    %tbody.closed
+      %tr
+        %td.indent
+        %td= f.label :leader_e_no_form, '進行ENo'
+        %td.formNum= text_field_tag :leader_e_no_form, @leader_e_no_form
+        %td= f.label :leader_name_form, '進行キャラクター名'
+        %td.formText= text_field_tag :leader_name_form, @leader_name_form
+      %tr
+        %td.indent
+        %td= f.label :fellow_members_e_no_form, '同行ENo'
+        %td.formNum= text_field_tag :fellow_members_e_no_form, @fellow_members_e_no_form
+        %td= f.label :fellow_members_name_form, '同行キャラクター名'
+        %td.formText= text_field_tag :fellow_members_name_form, @fellow_members_name_form
     %tbody.tbody_toggle.pointer
       %tr
         %td{colspan: "5"}
@@ -124,7 +157,7 @@
       %th= sort_link(@search, :page_no, '頁', default_order: :desc)
       - if @show_battle_result == "1"
         %th.sep= sort_link(@search, :battle_result, '勝敗', default_order: :desc)
-      %th.sep= sort_link(@search, :party_members_e_no,'参戦キャラクター(Eno)', default_order: :desc)
+      %th.sep= sort_link(@search, :party_members_e_no,'参戦キャラクター(ENo)', default_order: :desc)
       - if @show_num == "1"
         %th= sort_link(@search, :party_num, '人数', default_order: :desc)
       - if @show_enemy == "1"
