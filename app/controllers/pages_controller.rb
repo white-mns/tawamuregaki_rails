@@ -5,8 +5,8 @@ class PagesController < ApplicationController
   # GET /pages
   def index
     param_set
-    @count	= Page.notnil().includes(:story, [party_members: :pc_name], [leader: :pc_name], [fellow_members: :pc_name], [enemy_members: [:enemy, :suffix]]).pc_name_search(@params_members, @params_leader, @params_fellows).search(params[:q]).result.count()
-    @search	= Page.notnil().includes(:story, [party_members: :pc_name], [leader: :pc_name], [fellow_members: :pc_name], [enemy_members: [:enemy, :suffix]]).pc_name_search(@params_members, @params_leader, @params_fellows).page(params[:page]).search(params[:q])
+    @count	= Page.notnil().includes(:story, [party_members: :pc_name], [leader: :pc_name], [fellow_members: :pc_name], [enemy_members: [:enemy, :suffix]]).where_members(@params_members).where_leader(@params_leader).where_fellows(@params_fellows).search(params[:q]).result.count()
+    @search	= Page.notnil().includes(:story, [party_members: :pc_name], [leader: :pc_name], [fellow_members: :pc_name], [enemy_members: [:enemy, :suffix]]).where_members(@params_members).where_leader(@params_leader).where_fellows(@params_fellows).page(params[:page]).search(params[:q])
     @search.sorts = 'id asc' if @search.sorts.empty?
     @pages	= @search.result.per(50)
   end
@@ -21,6 +21,8 @@ class PagesController < ApplicationController
 
     @params_leader[:q]["party_order_eq"] = 0
     @params_fellows[:q]["party_order_not_eq"] = 0
+    params[:q]["party_order_eq"] = ""
+    params[:q]["party_order_not_eq"] = ""
 
     reference_number_assign(params, "result_no", "result_no_form")
     reference_number_assign(params, "generate_no", "generate_no_form")

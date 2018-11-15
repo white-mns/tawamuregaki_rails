@@ -5,11 +5,25 @@ class Page < ApplicationRecord
 	belongs_to :leader,         -> { where(party_order: 0)},    :foreign_key => :battle_no, :primary_key => :battle_no, :class_name => 'Party'
 	has_many   :fellow_members, -> { where(party_order: 1..4)}, :foreign_key => :battle_no, :primary_key => :battle_no, :class_name => 'Party'
 
-    scope :pc_name_search, -> (params_members, params_leader, params_fellows) {
-      members_query	= Party.search(params_members[:q]).result.select(:battle_no)
-      leader_query	= Party.search(params_leader[:q]).result.select(:battle_no)
-      fellows_query	= Party.search(params_fellows[:q]).result.select(:battle_no)
-      where(battle_no: members_query).where(battle_no: leader_query).where(battle_no: fellows_query)
+    scope :where_members, -> (params) {
+        if params["party_members_e_no_form"] || params["party_members_name_form"] then
+            query = Party.search(params[:q]).result.select(:battle_no)
+            where(battle_no: query)
+        end
+    }
+
+    scope :where_leader, -> (params) {
+        if params["leader_e_no_form"] || params["leader_name_form"] then
+            query = Party.search(params[:q]).result.select(:battle_no)
+            where(battle_no: query)
+        end
+    }
+
+    scope :where_fellows, -> (params) {
+        if params["fellow_members_e_no_form"] || params["fellow_members_name_form"] then
+            query = Party.search(params[:q]).result.select(:battle_no)
+            where(battle_no: query)
+        end
     }
 
 end
