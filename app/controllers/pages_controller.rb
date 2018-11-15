@@ -73,6 +73,7 @@ class PagesController < ApplicationController
     @is_draw = params["is_draw"]
     @is_lose = params["is_lose"]
 
+    @show_leader_fellow = params["show_leader_fellow"]
     @show_battle_result = params["show_battle_result"]
     @show_battle_no = params["show_battle_no"]
     @show_enemy = params["show_enemy"]

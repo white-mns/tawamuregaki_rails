@@ -55,10 +55,10 @@
     %tbody.tbody_toggle.pointer
       %tr
         %td{colspan: "5"}
-          = hidden_field_tag :show_battle_no, @show_battle_no
+          = hidden_field_tag :show_leader_fellow, @show_leader_fellow
           - act_icon(false)
-          = label_tag :show_battle_no, '　進行(呼び出し元)、同行で絞り込む', class: "act_desc"
-          = label_tag :show_battle_no, '　進行(呼び出し元)、同行を非表示にする', class: "act_desc closed"
+          = label_tag :show_leader_fellow, '　進行(呼び出し元)、同行で絞り込む', class: "act_desc"
+          = label_tag :show_leader_fellow, '　進行(呼び出し元)、同行を非表示にする', class: "act_desc closed"
           %div.act_desc 　進行ENo、進行キャラクター名、同行ENo、同行キャラクター名
     %tbody.closed
       %tr
