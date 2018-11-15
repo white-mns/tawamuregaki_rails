@@ -14,7 +14,7 @@ class NamesController < ApplicationController
   def param_set
     @last_result = Name.maximum('result_no')
 
-    params[:q] ||= {}
+    params[:q] = {}
     
     reference_text_assign(params, "pc_name_name", "pc_name_form")
     reference_number_assign(params, "result_no", "result_no_form")

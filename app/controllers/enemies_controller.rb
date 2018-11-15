@@ -14,7 +14,7 @@ class EnemiesController < ApplicationController
   def param_set
     @last_result = Name.maximum('result_no')
 
-    params[:q] ||= {}
+    params[:q] = {}
     
     reference_number_assign(params, "result_no", "result_no_form")
     reference_number_assign(params, "generate_no", "generate_no_form")

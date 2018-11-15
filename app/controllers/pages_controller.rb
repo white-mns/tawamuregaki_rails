@@ -14,7 +14,7 @@ class PagesController < ApplicationController
   def param_set
     @last_result = Name.maximum('result_no')
 
-    params[:q] ||= {}
+    params[:q] = {}
     @params_members = params.dup
     @params_leader  = params.dup
     @params_fellows = params.dup

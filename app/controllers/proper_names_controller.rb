@@ -14,7 +14,7 @@ class ProperNamesController < ApplicationController
   def param_set
     @last_result = Name.maximum('result_no')
 
-    params[:q] ||= {}
+    params[:q] = {}
     
     reference_number_assign(params, "proper_id", "proper_id_form")
     reference_number_assign(params, "name", "name_form")

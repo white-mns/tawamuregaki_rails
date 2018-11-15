@@ -14,7 +14,7 @@ class StoryDataController < ApplicationController
   def param_set
     @last_result = Name.maximum('result_no')
 
-    params[:q] ||= {}
+    params[:q] = {}
     
     reference_number_assign(params, "story_no", "story_no_form")
     reference_number_assign(params, "title", "title_form")
