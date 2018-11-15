@@ -46,7 +46,7 @@ class PagesController < ApplicationController
         params["is_draw"] = "on"
         params["is_lose"] = "on"
     end
-    params[:q]["battle_result_eq_any"] ||= []
+    params[:q]["battle_result_eq_any"] = []
     if params["is_win"] == "on"  then params[:q]["battle_result_eq_any"].push(1) end
     if params["is_draw"] == "on" then params[:q]["battle_result_eq_any"].push(0) end
     if params["is_lose"] == "on" then params[:q]["battle_result_eq_any"].push(-1) end

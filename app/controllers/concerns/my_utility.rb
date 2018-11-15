@@ -10,9 +10,7 @@ module MyUtility
     if texts.is_a?(Array) then
         suffixes = ["_cont_all", "_cont_any", "_not_cont_all", "_eq_all", "_eq_any","_not_eq_all"]
         for suffix in suffixes do
-            if !param_adr[:q][data_name + suffix].is_a?(Array) then
-                param_adr[:q][data_name + suffix] = Array.new
-            end
+            param_adr[:q][data_name + suffix] = Array.new
         end
 
         for text in texts do
@@ -65,9 +63,7 @@ module MyUtility
     if texts.is_a?(Array) then
         suffixes = ["_lteq_any", "_gteq_any", "_eq_any"]
         for suffix in suffixes do
-            if !param_adr[:q][data_name + suffix].is_a?(Array) then
-                param_adr[:q][data_name + suffix] = Array.new
-            end
+            param_adr[:q][data_name + suffix] = Array.new
         end
 
         for text in texts do
