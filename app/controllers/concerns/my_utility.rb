@@ -93,6 +93,18 @@ module MyUtility
       param_adr[:q][ransack_param].push(text)
   end
 
+  def params_clean(params)
+    if params[:q] && params[:q][:s] then
+        sort = params[:q][:s]
+    end
+
+    params[:q] = {}
+
+    if sort then
+        params[:q][:s] = sort
+    end
+  end
+
   private
 
 end
