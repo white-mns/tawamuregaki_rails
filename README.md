@@ -1,11 +1,11 @@
-# 戯書2期データ小屋　表示用Railsアプリ
-戯書2期データ小屋は[戯書](http://lisge.com/)（サイト消滅によりリンク先は製作者様サイト）を解析して得られるデータを扱った情報サイトです。  
-このプログラムは戯書2期データ小屋で実際に使用している表示用のRailsアプリです。  
-データ小屋の解析部分については[別リポジトリ](https://github.com/white-mns/teiki_arcive_parse/tree/tawa_2)を参照ください。
+# 戯書2期アーカイブ　表示用Railsアプリ
+戯書2期アーカイブは[戯書](http://lisge.com/)（サイト消滅によりリンク先は製作者様サイト）を解析して得られるデータを扱った情報サイトです。  
+このプログラムは戯書2期アーカイブで実際に使用している表示用のRailsアプリです。  
+戯書2期アーカイブの解析部分については[別リポジトリ](https://github.com/white-mns/teiki_arcive_parse/tree/tawa_2)を参照ください。
 
 # サイト
 実際に動いているサイトです。 
-[戯書2期データ小屋](https://data.teiki.org/tawa_2)
+[戯書2期アーカイブ](https://data.teiki.org/tawa_2)
 
 # 動作環境
 以下の環境での動作を確認しています  
@@ -36,7 +36,7 @@ gcc:5.2.1
     ./unicorn start
     
 他の方法でRailsが動かせるならUnicornである必要はありません。  
-ちなみにデータ小屋は開発環境をUnicorn(アプリ一つずつ再起動できる)、本番環境をPassenger（しばらく利用されてないアプリは眠らせられる）としています。
+ちなみに戯書2期アーカイブは開発環境をUnicorn(アプリ一つずつ再起動できる)、本番環境をPassenger（しばらく利用されてないアプリは眠らせられる）としています。
 デフォルトの設定だと`http://サーバーのアドレス:61000`で画面が見れます。
 
 ## 動かない場合
@@ -63,13 +63,13 @@ gcc:5.2.1
 例えば、gcc 4.4.7では一部のgemのインストールがうまくいきませんでした。  
 5.2.1に上げれば動作することを確認しています。
 
-データ小屋はCentOSを使っているので、[Developer Toolset 7 &mdash; Software Collections](https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/)でgccのバージョンを上げました。
+戯書2期アーカイブはCentOSを使っているので、[Developer Toolset 7 &mdash; Software Collections](https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/)でgccのバージョンを上げました。
 
 ## 機能の増やし方
 scaffoldで必要なものは大体用意されます。  
-データ小屋ではテンプレートを使うようにしているので、  
-`lib/templates/erb/scaffold/index.html.erb`を参考にデータ小屋っぽいViewが、  
-`lib/templates/rails/scaffold_controller/controller.rb`を参考にデータ小屋用のControllerが作成されます。  
+戯書2期アーカイブではテンプレートを使うようにしているので、  
+`lib/templates/erb/scaffold/index.html.erb`を参考に戯書2期アーカイブっぽいViewが、  
+`lib/templates/rails/scaffold_controller/controller.rb`を参考に戯書2期アーカイブ用のControllerが作成されます。  
 
     rails scaffold g テーブル名 result_no:integer generator_no:integer e_no:integer その他パラメーター
 
