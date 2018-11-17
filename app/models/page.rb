@@ -7,21 +7,21 @@ class Page < ApplicationRecord
 
     scope :where_members, -> (params) {
         if params["party_members_e_no_form"] || params["party_members_name_form"] then
-            query = Party.search(params[:q]).result.select(:battle_no)
+            query = Party.includes(:pc_name).search(params[:q]).result.select(:battle_no)
             where(battle_no: query)
         end
     }
 
     scope :where_leader, -> (params) {
         if params["leader_e_no_form"] || params["leader_name_form"] then
-            query = Party.search(params[:q]).result.select(:battle_no)
+            query = Party.includes(:pc_name).search(params[:q]).result.select(:battle_no)
             where(battle_no: query)
         end
     }
 
     scope :where_fellows, -> (params) {
         if params["fellow_members_e_no_form"] || params["fellow_members_name_form"] then
-            query = Party.search(params[:q]).result.select(:battle_no)
+            query = Party.includes(:pc_name).search(params[:q]).result.select(:battle_no)
             where(battle_no: query)
         end
     }
