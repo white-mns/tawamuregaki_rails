@@ -74,5 +74,5 @@
         %td= <%= singular_table_name %>.<%= attribute.name %>
 <% end -%>
         %td= character_link(<%= singular_table_name %>.e_no)
-        %td= character_old_link(@last_result, <%= singular_table_name %>.e_no, <%= singular_table_name %>.result_no, <%= singular_table_name %>.generate_no)
+        %td= character_old_link(@latest_result, <%= singular_table_name %>.e_no, <%= singular_table_name %>.result_no, <%= singular_table_name %>.generate_no)
 = paginate(@<%= plural_table_name %>)

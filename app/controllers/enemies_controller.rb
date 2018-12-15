@@ -12,7 +12,7 @@ class EnemiesController < ApplicationController
   end
 
   def param_set
-    @last_result = Name.maximum('result_no')
+    @latest_result = Name.maximum('result_no')
 
     params_clean(params)
     
