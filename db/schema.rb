@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_132357) do
+ActiveRecord::Schema.define(version: 2018_12_31_170518) do
 
   create_table "enemies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "result_no"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2018_11_14_132357) do
     t.index ["enemy_num"], name: "index_pages_on_enemy_num"
     t.index ["page_no"], name: "index_pages_on_page_no"
     t.index ["party_num"], name: "index_pages_on_party_num"
+    t.index ["result_no", "battle_result"], name: "resultno_battleresult"
     t.index ["story_id"], name: "index_pages_on_story_id"
   end
 
@@ -66,6 +67,7 @@ ActiveRecord::Schema.define(version: 2018_11_14_132357) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["battle_no", "e_no", "result_no", "generate_no"], name: "battle_no_eno"
+    t.index ["e_no", "result_no", "generate_no"], name: "eno_resultno"
     t.index ["party_order"], name: "index_parties_on_party_order"
   end
 

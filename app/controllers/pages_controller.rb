@@ -5,8 +5,8 @@ class PagesController < ApplicationController
   # GET /pages
   def index
     param_set
-    @count	= Page.notnil().includes(:story, [party_members: :pc_name], [leader: :pc_name], [fellow_members: :pc_name], [enemy_members: [:enemy, :suffix]]).where_members(@params_members).where_leader(@params_leader).where_fellows(@params_fellows).search(params[:q]).result.count()
-    @search	= Page.notnil().includes(:story, [party_members: :pc_name], [leader: :pc_name], [fellow_members: :pc_name], [enemy_members: [:enemy, :suffix]]).where_members(@params_members).where_leader(@params_leader).where_fellows(@params_fellows).page(params[:page]).search(params[:q])
+    @count	= Page.notnil().all_includes(params).where_members(@params_members).where_leader(@params_leader).where_fellows(@params_fellows).search(params[:q]).result.count()
+    @search	= Page.notnil().all_includes(params).where_members(@params_members).where_leader(@params_leader).where_fellows(@params_fellows).page(params[:page]).search(params[:q])
     @search.sorts = 'id asc' if @search.sorts.empty?
     @pages	= @search.result.per(50)
   end
