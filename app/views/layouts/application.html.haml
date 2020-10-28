@@ -32,9 +32,14 @@
       
       %footer
         %p
-          制作#{link_to "@white_mns", "http://twitter.com/white_mns"}
+          Twitter：#{link_to "@data_teiki", "http://twitter.com/data_teiki"}
+          %br
+          制作：#{link_to "@white_mns", "http://twitter.com/white_mns"}
           %br
           = link_to "プライバシーポリシー", top_page_privacy_path
           %br
+          %br
           ソースコード [#{link_to "解析部分", "https://github.com/white-mns/teiki_archive_parse/tree/tawa_1"}] [#{link_to "表示部分", "https://github.com/white-mns/teiki_archive_rails/tree/tawa_1"}]
+          %br
+          = link_to "その他ゲームのデータ小屋", "https://data.teiki.org/"
       = render 'layouts/analytics'
