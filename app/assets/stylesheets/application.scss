@@ -210,6 +210,10 @@ table tbody:nth-child(1) span.act_desc{
     font-size:80%;
 }
 
+.table thead:nth-child(1){
+  --bs-table-bg-type: #330;
+}
+
 table tbody:nth-child(1) td{
     background-color: $th-bg;
     color: $th-color;
