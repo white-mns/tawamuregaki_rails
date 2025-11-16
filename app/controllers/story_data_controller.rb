@@ -5,8 +5,8 @@ class StoryDataController < ApplicationController
   # GET /story_data
   def index
     param_set
-    @count	= StoryDatum.search(params[:q]).result.count()
-    @search	= StoryDatum.page(params[:page]).search(params[:q])
+    @count	= StoryDatum.ransack(params[:q]).result.count()
+    @search	= StoryDatum.page(params[:page]).ransack(params[:q])
     @search.sorts = 'id asc' if @search.sorts.empty?
     @story_data	= @search.result.per(50)
   end

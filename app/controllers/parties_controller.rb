@@ -5,8 +5,8 @@ class PartiesController < ApplicationController
   # GET /parties
   def index
     param_set
-    @count	= Party.notnil().includes(:pc_name).search(params[:q]).result.count()
-    @search	= Party.notnil().includes(:pc_name).page(params[:page]).search(params[:q])
+    @count	= Party.notnil().includes(:pc_name).ransack(params[:q]).result.count()
+    @search	= Party.notnil().includes(:pc_name).page(params[:page]).ransack(params[:q])
     @search.sorts = 'id asc' if @search.sorts.empty?
     @parties	= @search.result.per(50)
   end
