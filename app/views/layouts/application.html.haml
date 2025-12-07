@@ -18,9 +18,9 @@
     %nav.navbar.navbar-expand-md.fixed-top.navbar-light.navbar-custom.p-0
       .container
         = link_to "戯書2期アーカイブ", root_path, :class => "navbar-brand"
-        %button.navbar-toggler{type: "button", data: {bs: {toggle: "collapse", target: "#navbarNavDropdown"}}, area: {controls: "navbarNavDropdown", expanded: "false", label: "Toggle navigation"}}
+        %button.navbar-toggler{type: "button", data: {bs: {toggle: "collapse", target: "#navbarNavDropdown"}}, aria: {controls: "navbarNavDropdown", expanded: "false", label: "Toggle navigation"}}
           %span.navbar-toggler-icon
-        .collapse.navbar-collapse#navbarResponsive
+        .collapse.navbar-collapse#navbarNavDropdown
           %ul.navbar-nav
             %li.nav-item
               = link_to "キャラクター愛称一覧", names_path, class: "nav-link"
